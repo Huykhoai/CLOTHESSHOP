@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.CartActivity">
+
+ <androidx.appcompat.widget.Toolbar
+     android:layout_width="match_parent"
+     android:layout_height="50dp"
+     android:background="#808080"
+     app:title="Đơn Hàng"
+     app:titleTextColor="@color/white"
+     app:navigationIcon="@drawable/ic_back"
+     android:id="@+id/toolbarOrder"/>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/tablayot_order"
+        app:tabMode="scrollable"
+        tools:ignore="SpeakableTextPresentCheck"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpaper_order">
+
+    </androidx.viewpager2.widget.ViewPager2>
+</LinearLayout>
