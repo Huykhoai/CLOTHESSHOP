@@ -13,8 +13,8 @@ public class Order implements Serializable {
      int status;
      int total;
      String createAt;
-
-     public Order(String idOrder, String name, int phone, String address, ArrayList<Cart> list, String messages, int status, int total, String createAt) {
+     String createCancel;
+     public Order(String idOrder, String name, int phone, String address, ArrayList<Cart> list, String messages, int status, int total, String createAt,String createCancel) {
           this.idOrder = idOrder;
           this.name = name;
           this.phone = phone;
@@ -24,6 +24,7 @@ public class Order implements Serializable {
           this.status = status;
           this.total = total;
           this.createAt = createAt;
+          this.createCancel = createCancel;
      }
 
      public Order() {
@@ -99,5 +100,13 @@ public class Order implements Serializable {
 
      public void setCreateAt(String createAt) {
           this.createAt = createAt;
+     }
+
+     public String getCreateCancel() {
+          return createCancel;
+     }
+
+     public void setCreateCancel(String createCancel) {
+          this.createCancel = createCancel;
      }
 }

@@ -1,6 +1,8 @@
 package com.example.clothesshop.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,20 +30,29 @@ import java.util.ArrayList;
 public class OrderInformationActivity extends AppCompatActivity {
     TextView dateCreated, dateConfirm, dateCanceled, dateDelivery, dateSuccess, statusCreated, statusConfirm, statusCancel, statusDelivery, statusSuccess,
             name_user_order, phone_user_order, address_user_order, total_item, delivery_fee, total;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     ArrayList<Cart> listCart;
     InfomationAdapter adapter;
     ListView listView;
     Order order;
-
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_information);
         AnhXa();
         getData();
+        Actionbar();
     }
-
+    private void Actionbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(view -> onBackPressed());
+        ActionBar actionBar =getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setTitle(order.getIdOrder());
+        }
+    }
     private void getData() {
        Intent intent = getIntent();
        Bundle bundle = intent.getExtras();
@@ -58,19 +70,10 @@ public class OrderInformationActivity extends AppCompatActivity {
            statusCreated.setText("Chờ xác nhận");
        }
        if(order.getStatus()==2){
-           String text = "Đã hủy";
-           SpannableString spannableString = new SpannableString(text);
-           spannableString.setSpan(new ForegroundColorSpan(Color.RED), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-           statusCreated.setText(spannableString);
-       }
-       if(order.getStatus()==3){
-           statusCreated.setText("Xác nhận");
-       }
-       if(order.getStatus()==4){
-           statusCreated.setText("Đang giao");
-       }
-       if(order.getStatus()==5){
-           statusCreated.setText("Thành công");
+           statusCancel.setText("Đã hủy");
+           dateCanceled.setText(order.getCreateCancel());
+           statusCancel.setVisibility(View.VISIBLE);
+           dateCanceled.setVisibility(View.VISIBLE);
        }
        listCart.addAll(order.getList());
        adapter.notifyDataSetChanged();
@@ -78,6 +81,7 @@ public class OrderInformationActivity extends AppCompatActivity {
 
 
     private void AnhXa() {
+        toolbar = findViewById(R.id.toolbar_order_info);
         total_item = findViewById(R.id.total_item_order_info);
         total = findViewById(R.id.total_order_info);
         delivery_fee = findViewById(R.id.delivery_fee_order_info);
@@ -86,9 +90,16 @@ public class OrderInformationActivity extends AppCompatActivity {
         address_user_order = findViewById(R.id.address_user_order_info);
         dateCreated = findViewById(R.id.dateCreated_order_info);
         statusCreated = findViewById(R.id.statusCreated_order_info);
+        dateCanceled = findViewById(R.id.dateCanceled_order_info);
+        statusCancel = findViewById(R.id.statusCancel_order_info);
+        dateConfirm = findViewById(R.id.dateConfirm_order_info);
+        statusConfirm = findViewById(R.id.statusConfirm_order_info);
+        dateSuccess = findViewById(R.id.dateSuccess_order_info);
+        statusSuccess = findViewById(R.id.statusSuccess_order_info);
      listView = findViewById(R.id.listview_Order_detail);
      listCart = new ArrayList<>();
      adapter = new InfomationAdapter(OrderInformationActivity.this,listCart);
      listView.setAdapter(adapter);
     }
+
 }

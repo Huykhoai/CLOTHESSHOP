@@ -32,7 +32,9 @@ import com.example.clothesshop.model.Order;
 import com.example.clothesshop.server.server;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,7 +83,6 @@ public class OrderAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         Order order = arrayList.get(i);
-
         if(order.getStatus()==0){
             viewHolder.txtstatus_order.setText("Chờ Xác nhận");
         }if(order.getStatus()==1){
@@ -119,13 +120,13 @@ public class OrderAdapter extends BaseAdapter {
                 builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String dateCancel = spf.format(new Date());
                         RequestQueue requestQueue = Volley.newRequestQueue(context);
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, server.duongdanupdatestatus, new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                  if(response.equals("1")){
-                                     arrayList.remove(order);
                                      notifyDataSetChanged();
                                  }
                             }
@@ -141,6 +142,7 @@ public class OrderAdapter extends BaseAdapter {
                                 HashMap<String,String> params = new HashMap<>();
                                 params.put("status", String.valueOf(2));
                                 params.put("idorder", order.getIdOrder());
+                                params.put("datecancel",dateCancel);
                                 return params;
                             }
                         };

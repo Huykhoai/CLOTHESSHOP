@@ -36,7 +36,7 @@ import java.util.Map;
 
 
 public class AllOrderFragment extends Fragment {
-    String idOrder,nameorder,addressorder,messagesorder,createAt;
+    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel;
     String cartname, cartimage, cartsize, cartcolor;
     int cartid, cartquality, cartprice;
     int phoneorder,status, total;
@@ -101,7 +101,8 @@ public class AllOrderFragment extends Fragment {
                              status = jsonObject.getInt("status");
                              total = jsonObject.getInt("total");
                              createAt = jsonObject.getString("createAt");
-                             arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList, "", status,total, createAt));
+                             createCancel = jsonObject.getString("createCancel");
+                             arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList, "", status,total, createAt,createCancel));
                              adapter.notifyDataSetChanged();
                          }
                      } catch (JSONException e) {
