@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +27,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.clothesshop.R;
-import com.example.clothesshop.activity.LoginActivity;
 import com.example.clothesshop.activity.MainActivity_user;
-import com.example.clothesshop.activityAdmin.MainActivity;
+import com.example.clothesshop.activityAdmin.MainAdminActivity;
 import com.example.clothesshop.model.Users;
 import com.example.clothesshop.server.server;
 import com.google.android.material.textfield.TextInputLayout;
@@ -79,36 +77,42 @@ public class LoginFragment extends Fragment {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, server.duongdanloginusers, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            try {
-                                JSONObject jsonObject = new JSONObject(response);
-                                int loginStatus = jsonObject.getInt("login_status");
-                                int id = jsonObject.getInt("id");
-                                String name = jsonObject.getString("name");
-                                String pass = jsonObject.getString("hashed_pass");
-                                int phone = jsonObject.getInt("phone");
-                                String address = jsonObject.getString("address");
-                                int role = jsonObject.getInt("role");
-                                String avatar = jsonObject.getString("avatar");
-                                arrayList.add(new Users(id,name,pass,phone,address,role,avatar));
-                                if (loginStatus==1) {
-                                    Toast.makeText(getActivity(), "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                                    if(role==0){
-                                        startActivity(new Intent(getActivity(), MainActivity_user.class));
-                                        rememberUser(sodienthoai, pass, checkBox.isChecked());
-                                        progressDialog.dismiss();
-                                    }else {
-                                        startActivity(new Intent(getActivity(), MainActivity.class));
+                            if(response.equals("0")){
+                                Toast.makeText(getActivity(), "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }else if(response.equals("1")) {
+                                Toast.makeText(getActivity(), " Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }else {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    int loginStatus = jsonObject.getInt("login_status");
+                                    int id = jsonObject.getInt("id");
+                                    String name = jsonObject.getString("name");
+                                    String pass = jsonObject.getString("hashed_pass");
+                                    int phone = jsonObject.getInt("phone");
+                                    String address = jsonObject.getString("address");
+                                    int role = jsonObject.getInt("role");
+                                    String avatar = jsonObject.getString("avatar");
+                                    arrayList.add(new Users(id,name,pass,phone,address,role,avatar));
+                                    if (loginStatus==1) {
+                                        Toast.makeText(getActivity(), "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                                        if(role==0){
+                                            startActivity(new Intent(getActivity(), MainActivity_user.class));
+                                            rememberUser(sodienthoai, pass, checkBox.isChecked());
+                                            progressDialog.dismiss();
+                                        }else {
+                                            startActivity(new Intent(getActivity(), MainAdminActivity.class));
+                                            rememberUser(sodienthoai, pass, checkBox.isChecked());
+                                            progressDialog.dismiss();
+                                        }
+
                                     }
 
-                                }else if(response.equals("0")){
-                                    Toast.makeText(getActivity(), "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }else {
-                                    Toast.makeText(getActivity(), " Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
                                 }
-                            } catch (JSONException e) {
-                                throw new RuntimeException(e);
+
                             }
 
 

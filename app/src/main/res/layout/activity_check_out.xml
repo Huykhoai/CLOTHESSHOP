@@ -8,12 +8,15 @@
     android:weightSum="15"
     android:background="#E6E6FA"
     tools:context=".activity.CheckOutActivity">
-     <ImageView
-          android:layout_width="30dp"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:src="@drawable/download"
-          android:id="@+id/image_out_checkout"/>
+   <androidx.appcompat.widget.Toolbar
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"
+       android:id="@+id/toolbar_check"
+       app:navigationIcon="@drawable/ic_back"
+       app:title="CHECK INFOMATION"
+       android:background="#808080"
+       app:titleTextColor="@color/white"/>
   <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"
@@ -43,7 +46,7 @@
           android:layout_marginBottom="5dp"
           android:background="@drawable/tv_bg"
           android:padding="2dp"
-          android:text="Change adrres"
+          android:text="Change adrress"
           android:textSize="15dp" />
 
       <TextView

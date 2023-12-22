@@ -74,7 +74,7 @@ public class AllOrderFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                  if(response.equals("-1")){
-                     Toast.makeText(getActivity(), "Thất bại", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getActivity(), "Trống", Toast.LENGTH_SHORT).show();
                  }else {
                      try {
                          Log.d("order", "onResponse: "+response.toString());

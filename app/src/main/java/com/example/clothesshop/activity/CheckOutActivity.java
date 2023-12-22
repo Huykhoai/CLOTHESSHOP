@@ -2,6 +2,7 @@ package com.example.clothesshop.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -47,7 +48,7 @@ public class CheckOutActivity extends AppCompatActivity {
     InfomationAdapter adapter;
     ArrayList<Cart> arrayList;
     ArrayList<Order> listOrder;
-    ImageView image_out_checkout;
+    Toolbar toolbar;
     Products products;
     private int id, productId,quantity,price, phone_user,total;
     private String productImage,productName,size,color,name_user, address_user;
@@ -63,6 +64,7 @@ public class CheckOutActivity extends AppCompatActivity {
         getProfile();
         ChangeAddress();
         ButtonDathang();
+        ActionBar();
     }
 
     private void ButtonDathang() {
@@ -90,6 +92,8 @@ public class CheckOutActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     if(response.equals("1")){
+                                        Toast.makeText(CheckOutActivity.this, "Thay đổi thất bại", Toast.LENGTH_SHORT).show();
+                                    }else {
                                         Toast.makeText(CheckOutActivity.this, "Thay đổi thành công", Toast.LENGTH_SHORT).show();
                                         txtaddress_check.setText(change);
                                         dialog.dismiss();
@@ -107,11 +111,12 @@ public class CheckOutActivity extends AppCompatActivity {
                                     HashMap<String, String> params = new HashMap<>();
                                     String name = "";
                                     String pass = "";
+                                    String image ="";
                                     params.put("id", String.valueOf(id));
                                     params.put("name", name);
                                     params.put("pass", pass);
                                     params.put("address", change);
-
+                                    params.put("image", image);
                                     return params;
                                 }
                             };
@@ -163,8 +168,6 @@ public class CheckOutActivity extends AppCompatActivity {
             txttotal.setText(""+ total);
             txtgiatri_check.setText(""+total);
             txttotalquality.setText("( "+quantity+" Sản phẩm"+ " )");
-
-            image_out_checkout.setOnClickListener(view -> onBackPressed());
                 btndathang_check.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -250,8 +253,6 @@ public class CheckOutActivity extends AppCompatActivity {
             txtgiatri_check.setText(""+total);
             txttotalquality.setText("( "+totalquality+" Sản phẩm"+ " )");
 
-            image_out_checkout.setOnClickListener(view -> onBackPressed());
-
             btndathang_check.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -330,12 +331,17 @@ public class CheckOutActivity extends AppCompatActivity {
         txttotal = findViewById(R.id.txttotal_check_info);
         txttotalquality = findViewById(R.id.txttotalquality);
         txtgiatri_check = findViewById(R.id.txtgiatri_check);
-        image_out_checkout = findViewById(R.id.image_out_checkout);
+        toolbar = findViewById(R.id.toolbar_check);
         txtname_check = findViewById(R.id.txtname_check);
         txtphone_check = findViewById(R.id.txtphone_check);
         txtaddress_check = findViewById(R.id.txtaddress_check);
         btnchangeaddress = findViewById(R.id.btnchangeaddress);
         btndathang_check = findViewById(R.id.btnDathang_check);
         arrayList = new ArrayList<>();
+    }
+    private void ActionBar(){
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationOnClickListener(view -> onBackPressed());
     }
 }

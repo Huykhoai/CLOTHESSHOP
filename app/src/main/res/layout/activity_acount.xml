@@ -6,77 +6,101 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.AcountActivity">
+   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+       android:layout_width="match_parent"
+       android:layout_height="220dp"
+       android:id="@+id/swipe_account"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/constraintLayout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="#F5F5DC"
+          >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="#FFA500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+           <FrameLayout
+               android:id="@+id/frameLayout"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.05"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.5">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+               <androidx.cardview.widget.CardView
+                   android:id="@+id/cardView"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:cardCornerRadius="5dp">
 
-            <ImageView
-                android:id="@+id/image_account"
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
-        </androidx.cardview.widget.CardView>
+                   <ImageView
+                       android:id="@+id/image_account"
+                       android:layout_width="100dp"
+                       android:layout_height="100dp" />
 
-        <TextView
-            android:id="@+id/txtname_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="name"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.392" />
+               </androidx.cardview.widget.CardView>
+           </FrameLayout>
 
-        <TextView
-            android:id="@+id/txtphone_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.054"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/txtname_account"
-            app:layout_constraintVertical_bias="0.157" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_account"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="Account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="#808080"
-            app:titleTextColor="@color/white"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+           <TextView
+               android:id="@+id/txtname_account"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="name"
+               android:textSize="18dp"
+               android:textStyle="bold"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.053"
+               app:layout_constraintStart_toEndOf="@+id/frameLayout"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.392" />
+
+           <TextView
+               android:id="@+id/txtphone_account"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Phone"
+               android:textSize="18dp"
+               android:textStyle="bold"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.054"
+               app:layout_constraintStart_toEndOf="@+id/frameLayout"
+               app:layout_constraintTop_toBottomOf="@+id/txtname_account"
+               app:layout_constraintVertical_bias="0.157" />
+
+           <androidx.appcompat.widget.Toolbar
+               android:id="@+id/toolbar_account"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:background="#808080"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:navigationIcon="@drawable/ic_back"
+               app:title="Account"
+               app:titleTextColor="@color/white" />
+
+           <ImageView
+               android:id="@+id/image_update_account"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:layout_marginEnd="280dp"
+               android:src="@drawable/baseline_camera_alt_24"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/toolbar_account"
+               app:layout_constraintVertical_bias="0.666" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -132,13 +156,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edname_account"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tilpass_account"
             android:hint="Password"
             android:layout_margin="10dp"
@@ -164,17 +188,16 @@
                 android:layout_height="wrap_content"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="50dp"
-           android:id="@+id/btnupdate_account"
-           android:textStyle="bold"
-           android:text="Update"
-           android:textSize="25dp"
-           android:textColor="@color/white"
-           android:gravity="center"
-           android:background="#FFA500"
-           android:layout_margin="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/btnupdate_account"
+            android:textStyle="bold"
+            android:text="Update"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="#F5F5DC"
+            android:layout_margin="10dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -182,7 +205,7 @@
             android:textStyle="bold"
             android:text="Log out"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:gravity="center"
             android:background="#A9A9A9"
             android:layout_margin="10dp"/>
