@@ -9,4 +9,8 @@ public class server {
     public static String duongdanupdateusers = localhost+"/updateUsers.php";
     public static String duongdanorders = localhost+"/orders.php";
     public static String duongdanupdatestatus = localhost+"/updatestatus.php";
+    public static String duongdaninsertcategory = localhost+"/CudCategory.php";
+    public static String duongdancudproduct = localhost+"/CudProduct.php";
+    public static String duongdancruduser = localhost+"/cruduser.php";
+    public static String duongdandoanhthu = localhost+"/doanhthu.php";
 }

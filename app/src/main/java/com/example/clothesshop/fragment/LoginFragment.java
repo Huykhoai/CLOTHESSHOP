@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -43,7 +44,7 @@ import java.util.Map;
 public class LoginFragment extends Fragment {
     EditText edSodienthoai, edPass;
     TextInputLayout tilEmail, tilPass;
-    Button btnLogin;
+    TextView btnLogin;
     CheckBox checkBox;
     int temp=0;
     ImageView fabFacebook,fabGoogle,fabTwiter;
@@ -210,4 +211,17 @@ public class LoginFragment extends Fragment {
         fabGoogle.animate().translationY(0).alpha(1).setDuration(1500).setStartDelay(1200).start();
         fabTwiter.animate().translationY(0).alpha(1).setDuration(1500).setStartDelay(1400).start();
     }
+//    private void remember(int id,String name,String pass,int phone,String address,int role,String image){
+//        SharedPreferences spf = getActivity().getSharedPreferences("profileuser", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = spf.edit();
+//        editor.putInt("id",id);
+//        editor.putString("name", name);
+//        editor.putString("pass", pass);
+//        editor.putInt("phone", phone);
+//        editor.putString("address", address);
+//        editor.putInt("role", role);
+//        editor.putString("image", image);
+//        editor.commit();
+//
+//    }
 }

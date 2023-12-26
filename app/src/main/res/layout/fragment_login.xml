@@ -33,16 +33,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_tilpassword" />
 
-        <Button
+        <TextView
             android:backgroundTint="#03dac6"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:id="@+id/login_btnlogin"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="56dp"
             android:layout_weight="1"
             android:text="Đăng nhập"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/bg_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_checkBox" />
 

@@ -14,7 +14,11 @@ public class Order implements Serializable {
      int total;
      String createAt;
      String createCancel;
-     public Order(String idOrder, String name, int phone, String address, ArrayList<Cart> list, String messages, int status, int total, String createAt,String createCancel) {
+     String dateConfrim;
+     String dateDelivery;
+     String dateSuccess;
+     public Order(String idOrder, String name, int phone, String address, ArrayList<Cart> list, String messages,
+        int status, int total, String createAt,String createCancel,String dateConfrim,String dateDelivery,String dateSuccess) {
           this.idOrder = idOrder;
           this.name = name;
           this.phone = phone;
@@ -25,6 +29,9 @@ public class Order implements Serializable {
           this.total = total;
           this.createAt = createAt;
           this.createCancel = createCancel;
+          this.dateConfrim = dateConfrim;
+          this.dateDelivery = dateDelivery;
+          this.dateSuccess = dateSuccess;
      }
 
      public Order() {
@@ -108,5 +115,29 @@ public class Order implements Serializable {
 
      public void setCreateCancel(String createCancel) {
           this.createCancel = createCancel;
+     }
+
+     public String getDateConfrim() {
+          return dateConfrim;
+     }
+
+     public void setDateConfrim(String dateConfrim) {
+          this.dateConfrim = dateConfrim;
+     }
+
+     public String getDateDelivery() {
+          return dateDelivery;
+     }
+
+     public void setDateDelivery(String dateDelivery) {
+          this.dateDelivery = dateDelivery;
+     }
+
+     public String getDateSuccess() {
+          return dateSuccess;
+     }
+
+     public void setDateSuccess(String dateSuccess) {
+          this.dateSuccess = dateSuccess;
      }
 }

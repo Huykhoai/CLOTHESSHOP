@@ -15,8 +15,14 @@
         android:theme="@style/Theme.Clothesshop"
         tools:targetApi="31">
         <activity
+            android:name=".activityAdmin.DoanhthuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activityAdmin.InfomationAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BeginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,9 +55,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activityAdmin.MainAdminActivity"
             android:exported="true" />

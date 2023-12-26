@@ -126,7 +126,12 @@
 
             txtname_account.setText(""+ name);
             txtphone_account.setText("+84"+phone);
-            Picasso.get().load(img_user).into(imageView);
+            if(img_user.equals("")){
+                imageView.setImageResource(R.drawable.avatar);
+            }else {
+                Picasso.get().load(img_user).into(imageView);
+            }
+
         }
 
         private void Anhxa() {

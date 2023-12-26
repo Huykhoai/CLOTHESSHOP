@@ -36,7 +36,7 @@ import java.util.Map;
 
 
 public class DaHuyFragment extends Fragment {
-    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel;
+    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel,dateConfirm,dateDelivery,dateSuccess;
     String cartname, cartimage, cartsize, cartcolor;
     int cartid, cartquality, cartprice;
     int phoneorder,status, total;
@@ -45,7 +45,7 @@ public class DaHuyFragment extends Fragment {
     OrderAdapter adapter;
     ListView listView;
 
-    int phoneuser;
+    int phoneuser,role;
     SwipeRefreshLayout swipeRefreshLayout;
     public DaHuyFragment() {
         // Required empty public constructor
@@ -61,9 +61,8 @@ public class DaHuyFragment extends Fragment {
         return view;
     }
     private void getDataUser() {
-        for(int i=0;i<LoginFragment.arrayList.size();i++){
-            phoneuser = LoginFragment.arrayList.get(i).getPhone();
-        }
+            phoneuser = LoginFragment.arrayList.get(0).getPhone();
+            role = LoginFragment.arrayList.get(0).getRole();
     }
 
     public void getData() {
@@ -100,8 +99,11 @@ public class DaHuyFragment extends Fragment {
                             total = jsonObject.getInt("total");
                             createAt = jsonObject.getString("createAt");
                             createCancel = jsonObject.getString("createCancel");
-                            arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList, "", status,total, createAt,createCancel));
-                            adapter.notifyDataSetChanged();
+                            dateDelivery = jsonObject.getString("dateDelivery");
+                            dateConfirm = jsonObject.getString("dateConfirm");
+                            dateSuccess = jsonObject.getString("dateSuccess");
+                            arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList
+                                    , "", status,total, createAt,createCancel,dateConfirm,dateDelivery,dateSuccess));                            adapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -121,6 +123,7 @@ public class DaHuyFragment extends Fragment {
                 params.put("json", "");
                 params.put("phone", String.valueOf(phoneuser));
                 params.put("status", String.valueOf(2));
+                params.put("role", String.valueOf(role));
                 return params;
             }
         };

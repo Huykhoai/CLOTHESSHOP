@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class ChoXacnhanFragment extends Fragment {
 
-    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel;
+    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel,dateConfirm,dateDelivery,dateSuccess;
     String cartname, cartimage, cartsize, cartcolor;
     int cartid, cartquality, cartprice;
     int phoneorder,status, total;
@@ -46,7 +46,7 @@ public class ChoXacnhanFragment extends Fragment {
     OrderAdapter adapter;
     ListView listView;
 
-    int phoneuser;
+    int phoneuser,role;
     SwipeRefreshLayout swipeRefreshLayout;
     public ChoXacnhanFragment() {
         // Required empty public constructor
@@ -64,9 +64,8 @@ public class ChoXacnhanFragment extends Fragment {
     }
 
     private void getDataUser() {
-        for(int i=0;i<LoginFragment.arrayList.size();i++){
-            phoneuser = LoginFragment.arrayList.get(i).getPhone();
-        }
+            phoneuser = LoginFragment.arrayList.get(0).getPhone();
+            role = LoginFragment.arrayList.get(0).getRole();
     }
 
     private void getData() {
@@ -103,8 +102,11 @@ public class ChoXacnhanFragment extends Fragment {
                             total = jsonObject.getInt("total");
                             createAt = jsonObject.getString("createAt");
                             createCancel = jsonObject.getString("createCancel");
-                            arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList, "", status,total, createAt,createCancel));
-                            adapter.notifyDataSetChanged();
+                            dateDelivery = jsonObject.getString("dateDelivery");
+                            dateConfirm = jsonObject.getString("dateConfirm");
+                            dateSuccess = jsonObject.getString("dateSuccess");
+                            arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList
+                                    , "", status,total, createAt,createCancel,dateConfirm,dateDelivery,dateSuccess));                            adapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -124,6 +126,7 @@ public class ChoXacnhanFragment extends Fragment {
                 params.put("json", "");
                 params.put("phone", String.valueOf(phoneuser));
                 params.put("status", String.valueOf(1));
+                params.put("role", String.valueOf(role));
                 return params;
             }
         };

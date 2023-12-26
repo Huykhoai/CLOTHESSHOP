@@ -75,6 +75,24 @@ public class OrderInformationActivity extends AppCompatActivity {
            statusCancel.setVisibility(View.VISIBLE);
            dateCanceled.setVisibility(View.VISIBLE);
        }
+       if(order.getStatus()==3){
+           statusConfirm.setText("Xác nhận");
+           dateConfirm.setText(order.getDateConfrim());
+           statusConfirm.setVisibility(View.VISIBLE);
+           dateConfirm.setVisibility(View.VISIBLE);
+       }
+       if(order.getStatus()==4){
+               statusDelivery.setText("Đang giao");
+               dateDelivery.setText(order.getDateDelivery());
+               statusDelivery.setVisibility(View.VISIBLE);
+               dateDelivery.setVisibility(View.VISIBLE);
+       }
+        if(order.getStatus()==5){
+            statusSuccess.setText("Thành công");
+            dateSuccess.setText(order.getDateDelivery());
+            statusSuccess.setVisibility(View.VISIBLE);
+            dateSuccess.setVisibility(View.VISIBLE);
+        }
        listCart.addAll(order.getList());
        adapter.notifyDataSetChanged();
     }
@@ -94,6 +112,8 @@ public class OrderInformationActivity extends AppCompatActivity {
         statusCancel = findViewById(R.id.statusCancel_order_info);
         dateConfirm = findViewById(R.id.dateConfirm_order_info);
         statusConfirm = findViewById(R.id.statusConfirm_order_info);
+        dateDelivery = findViewById(R.id.dateDelivery_order_info);
+        statusDelivery = findViewById(R.id.statusDelivery_order_info);
         dateSuccess = findViewById(R.id.dateSuccess_order_info);
         statusSuccess = findViewById(R.id.statusSuccess_order_info);
      listView = findViewById(R.id.listview_Order_detail);

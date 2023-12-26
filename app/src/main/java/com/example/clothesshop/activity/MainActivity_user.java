@@ -45,7 +45,7 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class MainActivity_user extends AppCompatActivity {
     public static ArrayList<Cart> userCart;
-     private ViewPager2 viewPager2;
+    private ViewPager2 viewPager2;
     private List<Photo> photoList;
     private ArrayList<Categories> categoriesList;
     private ArrayList<Products> productsList;
@@ -113,7 +113,7 @@ public class MainActivity_user extends AppCompatActivity {
         });
     }
 
-    private void getCategories() {
+    private void getCategories(){
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity_user.this);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(server.duongdancategories, new Response.Listener<JSONArray>() {
             @Override

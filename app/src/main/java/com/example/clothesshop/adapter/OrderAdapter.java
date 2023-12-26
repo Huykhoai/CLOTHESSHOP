@@ -83,17 +83,17 @@ public class OrderAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         Order order = arrayList.get(i);
-        if(order.getStatus()==0){
+        if(order.getStatus()==1){
             viewHolder.txtstatus_order.setText("Chờ Xác nhận");
-        }if(order.getStatus()==1){
+        }if(order.getStatus()==3){
             viewHolder.txtstatus_order.setText("Xác nhận");
         }if(order.getStatus()==2){
             viewHolder.txtstatus_order.setText("Đã hủy");
             viewHolder.btnCancel_order.setText("Đã hủy");
             viewHolder.btnCancel_order.setEnabled(false);
-        }if(order.getStatus()==3){
-            viewHolder.txtstatus_order.setText("Đang giao");
         }if(order.getStatus()==4){
+            viewHolder.txtstatus_order.setText("Đang giao");
+        }if(order.getStatus()==5){
             viewHolder.txtstatus_order.setText("Thành công");
         }
         viewHolder.txtname_order.setText(order.getName());

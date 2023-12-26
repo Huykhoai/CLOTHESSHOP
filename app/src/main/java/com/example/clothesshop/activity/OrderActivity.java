@@ -5,19 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.clothesshop.R;
 import com.example.clothesshop.adapter.ViewpaperOrderAdapter;
-import com.example.clothesshop.fragment.CancelOrderFragment;
-import com.example.clothesshop.fragment.DaHuyFragment;
-import com.example.clothesshop.model.Order;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
 
 public class OrderActivity extends AppCompatActivity {
       TabLayout tabLayout;

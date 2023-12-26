@@ -1,5 +1,6 @@
 package com.example.clothesshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.clothesshop.R;
+import com.example.clothesshop.activityAdmin.InfomationAdminActivity;
 import com.example.clothesshop.adapter.OrderAdapter;
 import com.example.clothesshop.model.Cart;
 import com.example.clothesshop.model.Order;
@@ -36,16 +39,16 @@ import java.util.Map;
 
 
 public class AllOrderFragment extends Fragment {
-    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel;
+    String idOrder,nameorder,addressorder,messagesorder,createAt,createCancel,dateConfirm,dateDelivery,dateSuccess;
     String cartname, cartimage, cartsize, cartcolor;
     int cartid, cartquality, cartprice;
     int phoneorder,status, total;
-    ArrayList<Cart> cartArrayList;
-    ArrayList<Order> arrayList;
+    public static ArrayList<Cart> cartArrayList;
+    public static ArrayList<Order> arrayList;
     OrderAdapter adapter;
     ListView listView;
 
-    int phoneuser;
+    int phoneuser,role;
     SwipeRefreshLayout swipeRefreshLayout;
     public AllOrderFragment() {
         // Required empty public constructor
@@ -63,9 +66,10 @@ public class AllOrderFragment extends Fragment {
     }
 
     private void getDataUser() {
-        for(int i=0;i<LoginFragment.arrayList.size();i++){
-            phoneuser = LoginFragment.arrayList.get(i).getPhone();
-        }
+
+            phoneuser = LoginFragment.arrayList.get(0).getPhone();
+            role = LoginFragment.arrayList.get(0).getRole();
+
     }
 
     private void getData() {
@@ -102,7 +106,11 @@ public class AllOrderFragment extends Fragment {
                              total = jsonObject.getInt("total");
                              createAt = jsonObject.getString("createAt");
                              createCancel = jsonObject.getString("createCancel");
-                             arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList, "", status,total, createAt,createCancel));
+                             dateDelivery = jsonObject.getString("dateDelivery");
+                             dateConfirm = jsonObject.getString("dateConfirm");
+                             dateSuccess = jsonObject.getString("dateSuccess");
+                             arrayList.add(new Order(idOrder, nameorder, phoneorder,addressorder, cartArrayList
+                                     , "", status,total, createAt,createCancel,dateConfirm,dateDelivery,dateSuccess));
                              adapter.notifyDataSetChanged();
                          }
                      } catch (JSONException e) {
@@ -122,7 +130,8 @@ public class AllOrderFragment extends Fragment {
                 HashMap<String,String> params = new HashMap<>();
                 params.put("json", "");
                 params.put("phone", String.valueOf(phoneuser));
-                params.put("status", "");
+                params.put("status", String.valueOf(0));
+                params.put("role", String.valueOf(role));
                 return params;
             }
         };
@@ -144,5 +153,6 @@ public class AllOrderFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
     }
 }
